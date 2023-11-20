@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import "./Blog.css";
 
 const BlogContainer = ({ children }) => {
-  return <div className="d-flex flex-column-reverse">{children}</div>;
+  return <div className="d-flex flex-column">{children}</div>;
 };
 
 const BlogCard = ({ cardTitle, cardContent, author }) => {
   const readToggle = () => {
-    var dots = document.getElementById("dots");
-    var moreText = document.getElementById("more");
-    var btnText = document.getElementById("myBtn");
+    var dots = document.getElementById(`${cardTitle.slice(0, 3)}dots`);
+    var moreText = document.getElementById(`${cardTitle.slice(0, 3)}more`);
+    var btnText = document.getElementById(`${cardTitle.slice(0, 3)}myBtn`);
 
     if (dots.style.display === "none") {
       dots.style.display = "inline";
@@ -41,8 +41,10 @@ const BlogCard = ({ cardTitle, cardContent, author }) => {
         </div>
         <p>
           {cardContent.slice(0, 450)}
-          <span id="dots">...</span>
-          <span id="more">{cardContent.slice(450)}</span>
+          <span id={`${cardTitle.slice(0, 3)}dots`}>...</span>
+          <span id={`${cardTitle.slice(0, 3)}more`}>
+            {cardContent.slice(450)}
+          </span>
         </p>
         {cardContent.length >= 450 && (
           <>
@@ -52,7 +54,7 @@ const BlogCard = ({ cardTitle, cardContent, author }) => {
               </Link> */}
             <Button
               variant="primary"
-              id="myBtn"
+              id={`${cardTitle.slice(0, 3)}myBtn`}
               onClick={readToggle}
               className="rounded-5"
             >
