@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import "./Blog.css";
 
 const BlogContainer = ({ children }) => {
   return <div className="d-flex flex-column">{children}</div>;
@@ -23,6 +21,14 @@ const BlogCard = ({ cardTitle, cardContent, author }) => {
       moreText.style.display = "inline";
     }
   };
+
+  useEffect(() => {
+    const dot = document.getElementById(`${cardTitle.slice(0, 3)}dots`);
+    var moreText = document.getElementById(`${cardTitle.slice(0, 3)}more`);
+    dot.style.display = "inline";
+    moreText.style.display = "none";
+  }, []);
+
   return (
     <div className="bg-light d-flex flex-column flex-lg-row rounded-5 shadow-sm mb-3">
       <div className="p-3 p-lg-5 ">
